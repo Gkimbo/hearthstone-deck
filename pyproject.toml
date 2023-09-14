@@ -39,7 +39,7 @@ combine_star = true
 skip = ["venv", "env", "node_modules", "migrations", ".env", ".venv"]
 
 [tool.poetry]
-name = "{{project_name}}"
+name = "heartstone-deck"
 version = "0.1.0"
 description = "Django 3, React, Bootstrap 5 with Python 3 and webpack project boilerplate"
 authors = ["Vinta Software <contact@vinta.com.br>"]

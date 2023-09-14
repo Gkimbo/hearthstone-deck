@@ -1,5 +1,5 @@
 """
-WSGI config for {{project_name}} project.
+WSGI config for heartstone-deck project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,6 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{project_name}}.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+                      "heartstone-deck.settings.production")
 
 application = get_wsgi_application()

@@ -78,8 +78,8 @@ Send us an email at contact@vintasoftware.com telling us a bit more about how ou
 In the next steps, always remember to replace theprojectname with your project's name
 - [ ] Above: don't forget the `--extension` and `--name` params!
 - [ ] Change the first line of README to the name of the project
-- [ ] Add an email address to the `ADMINS` settings variable in `{{project_name}}/backend/{{project_name}}/settings/base.py`
-- [ ] Change the `SERVER_EMAIL` to the email address used to send e-mails in `{{project_name}}/backend/{{project_name}}/settings/production.py`
+- [ ] Add an email address to the `ADMINS` settings variable in `heartstone-deck/backend/heartstone-deck/settings/base.py`
+- [ ] Change the `SERVER_EMAIL` to the email address used to send e-mails in `heartstone-deck/backend/heartstone-deck/settings/production.py`
 
 After completing ALL of the above, remove this `Project bootstrap` section from the project README. Then follow `Running` below.
 
@@ -89,13 +89,13 @@ After completing ALL of the above, remove this `Project bootstrap` section from 
 
 ### Setup
 - Inside the `backend` folder, do the following:
-  - Create a copy of `{{project_name}}/settings/local.py.example`:  
-  `cp {{project_name}}/settings/local.py.example {{project_name}}/settings/local.py`
+  - Create a copy of `heartstone-deck/settings/local.py.example`:  
+  `cp heartstone-deck/settings/local.py.example heartstone-deck/settings/local.py`
   - Create a copy of `.env.example`:
   `cp .env.example .env`
 
 ### If you are using Docker:
-- Open the `/backend/.env` file on a text editor and uncomment the line `DATABASE_URL=postgres://{{project_name}}:password@db:5432/{{project_name}}`
+- Open the `/backend/.env` file on a text editor and uncomment the line `DATABASE_URL=postgres://heartstone-deck:password@db:5432/heartstone-deck`
 - Open a new command line window and go to the project's directory
 - Run the initial setup:
   `make docker_setup`
@@ -133,7 +133,7 @@ After completing ALL of the above, remove this `Project bootstrap` section from 
 #### Setup the backend app
 - Open the `/backend/.env` file on a text editor and do one of the following:
   - If you wish to use SQLite locally, uncomment the line `DATABASE_URL=sqlite:///backend/db.sqlite3`
-  - If you wish to use PostgreSQL locally, uncomment and edit the line `DATABASE_URL=postgres://{{project_name}}:password@db:5432/{{project_name}}` in order to make it correctly point to your database URL
+  - If you wish to use PostgreSQL locally, uncomment and edit the line `DATABASE_URL=postgres://heartstone-deck:password@db:5432/heartstone-deck` in order to make it correctly point to your database URL
     - The url format is the following: `postgres://USER:PASSWORD@HOST:PORT/NAME`
   - If you wish to use another database engine locally, add a new `DATABASE_URL` setting for the database you wish to use
     - Please refer to [dj-database-url](https://github.com/jacobian/dj-database-url#url-schema) on how to configure `DATABASE_URL` for commonly used engines

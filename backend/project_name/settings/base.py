@@ -6,7 +6,8 @@ from decouple import config  # noqa
 from dj_database_url import parse as db_url  # noqa
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
 
 
 def base_dir_join(*args):
@@ -54,7 +55,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "{{project_name}}.urls"
+ROOT_URLCONF = "heartstone-deck.urls"
 
 TEMPLATES = [
     {
@@ -82,7 +83,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "{{project_name}}.wsgi.application"
+WSGI_APPLICATION = "heartstone-deck.wsgi.application"
 
 AUTH_PASSWORD_VALIDATORS = [
     {

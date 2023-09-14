@@ -32,7 +32,7 @@ npm-debug.log
 *.map
 
 # General
-/{{project_name}}-venv/
+/heartstone-deck-venv/
 /venv/
 /env/
 /output/

@@ -1,21 +1,21 @@
 databases:
-  - name: {{project_name}}-postgres
-    databaseName: {{project_name}}
+  - name: heartstone-deck-postgres
+    databaseName: heartstone-deck
     plan: free
-    user: {{project_name}}
+    user: heartstone-deck
 
 services:
   - type: redis
-    name: {{project_name}}-redis
+    name: heartstone-deck-redis
     plan: free
     ipAllowList: [] # only allow internal connections
     
   - type: web
-    name: {{project_name}}
+    name: heartstone-deck
     plan: free
     runtime: python
     buildCommand: "./render_build.sh"
-    startCommand: "poetry run gunicorn {{project_name}}.wsgi:application --chdir backend --limit-request-line 8188 --log-file -"
+    startCommand: "poetry run gunicorn heartstone-deck.wsgi:application --chdir backend --limit-request-line 8188 --log-file -"
     envVars:
       - key: ENABLE_DJANGO_COLLECTSTATIC
         sync: false
@@ -25,12 +25,12 @@ services:
         sync: false
       - key: DATABASE_URL
         fromDatabase:
-          name: {{project_name}}-postgres
+          name: heartstone-deck-postgres
           property: connectionString
       - key: REDIS_URL
         fromService:
           type: redis
-          name: {{project_name}}-redis
+          name: heartstone-deck-redis
           property: connectionString
       - fromGroup: python-services
       - fromGroup: integrations-credentials
@@ -43,7 +43,7 @@ services:
   #   runtime: python
   #   env: python
   #   buildCommand: poetry install
-  #   startCommand: "poetry run celery --workdir backend --app={{project_name}} worker --loglevel=info --max-memory-per-child=$WORKER_MAX_MEMORY  --concurrency=$WORKER_CONCURRENCY"
+  #   startCommand: "poetry run celery --workdir backend --app=heartstone-deck worker --loglevel=info --max-memory-per-child=$WORKER_MAX_MEMORY  --concurrency=$WORKER_CONCURRENCY"
   #   envVars:
   #     - key: REMAP_SIGTERM
   #       value: SIGQUIT      
@@ -53,12 +53,12 @@ services:
   #       sync: false
   #     - key: DATABASE_URL
   #       fromDatabase:
-  #         name: {{project_name}}-postgres
+  #         name: heartstone-deck-postgres
   #         property: connectionString
   #     - key: REDIS_URL
   #       fromService:
   #         type: redis
-  #         name: {{project_name}}-redis
+  #         name: heartstone-deck-redis
   #         property: connectionString
   #     - fromGroup: python-services
   #     - fromGroup: integrations-credentials
@@ -67,18 +67,18 @@ services:
   #   runtime: python
   #   env: python
   #   buildCommand: poetry install
-  #   startCommand: "poetry run celery --workdir backend --app={{project_name}} beat --loglevel=info"
+  #   startCommand: "poetry run celery --workdir backend --app=heartstone-deck beat --loglevel=info"
   #   envVars:
   #     - key: REMAP_SIGTERM
   #       value: SIGQUIT
   #     - key: DATABASE_URL
   #       fromDatabase:
-  #         name: {{project_name}}-postgres
+  #         name: heartstone-deck-postgres
   #         property: connectionString
   #     - key: REDIS_URL
   #       fromService:
   #         type: redis
-  #         name: {{project_name}}-redis
+  #         name: heartstone-deck-redis
   #         property: connectionString
   #     - fromGroup: python-services
   #     - fromGroup: integrations-credentials
@@ -93,7 +93,7 @@ envVarGroups:
       - key: SECRET_KEY
         generateValue: true
       - key: DJANGO_SETTINGS_MODULE
-        value: {{project_name}}.settings.production
+        value: heartstone-deck.settings.production
       - key: ALLOWED_HOSTS
         value: '*'
   - name: integrations-credentials

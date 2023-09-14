@@ -1,7 +1,7 @@
 # Django React Boilerplate
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
-[![License: MIT](https://img.shields.io/github/license/vintasoftware/django-react-boilerplate.svg)](LICENSE.txt)
+[![License: MIT](https://img.shields.io/github/license/vintasoftware/hearthstone-deck.svg)](LICENSE.txt)
 
 ## About
 A [Django](https://www.djangoproject.com/) project boilerplate/template with a multitude of state-of-the-art libraries and tools. If pairing Django with React is a possibility for your project or spinoff, this is the best solution available. Save time with tools like:
@@ -63,17 +63,17 @@ Several people have leveraged our boilerplate to start spinoffs or to boost thei
 Send us an email at contact@vintasoftware.com telling us a bit more about how our boilerplate helped you boost your project.
 
 
-## Project bootstrap [![main](https://github.com/chocoelho/django-react-boilerplate/actions/workflows/main.yml/badge.svg)](https://github.com/chocoelho/django-react-boilerplate/actions/workflows/main.yml) [![Known Vulnerabilities](https://snyk.io/test/github/vintasoftware/django-react-boilerplate/badge.svg)](https://snyk.io/test/github/vintasoftware/django-react-boilerplate)
+## Project bootstrap [![main](https://github.com/chocoelho/hearthstone-deck/actions/workflows/main.yml/badge.svg)](https://github.com/chocoelho/hearthstone-deck/actions/workflows/main.yml) [![Known Vulnerabilities](https://snyk.io/test/github/vintasoftware/hearthstone-deck/badge.svg)](https://snyk.io/test/github/vintasoftware/hearthstone-deck)
 - [ ] Make sure you have Python 3.11 installed
 - [ ] Install Django with `pip install django`, to have the `django-admin` command available.
 - [ ] Open the command line and go to the directory you want to start your project in.
 - [ ] Start your project using:
     ```
-    django-admin startproject theprojectname --extension py,yml,json --name Procfile,Dockerfile,docker-compose.yml,README.md,.env.example,.gitignore,Makefile,render.yaml --template=https://github.com/vintasoftware/django-react-boilerplate/archive/boilerplate-release.zip
+    django-admin startproject theprojectname --extension py,yml,json --name Procfile,Dockerfile,docker-compose.yml,README.md,.env.example,.gitignore,Makefile,render.yaml --template=https://github.com/vintasoftware/hearthstone-deck/archive/boilerplate-release.zip
     ```
     Alternatively, you may start the project in the current directory by placing a `.` right after the project name, using the following command:
     ```
-    django-admin startproject theprojectname . --extension py,yml,json --name Procfile,Dockerfile,docker-compose.yml,README.md,.env.example,.gitignore,Makefile,render.yaml --template=https://github.com/vintasoftware/django-react-boilerplate/archive/boilerplate-release.zip
+    django-admin startproject theprojectname . --extension py,yml,json --name Procfile,Dockerfile,docker-compose.yml,README.md,.env.example,.gitignore,Makefile,render.yaml --template=https://github.com/vintasoftware/hearthstone-deck/archive/boilerplate-release.zip
     ```
 In the next steps, always remember to replace theprojectname with your project's name
 - [ ] Above: don't forget the `--extension` and `--name` params!
@@ -243,9 +243,9 @@ We believe Celery tasks should be idempotent. So for us it's safe to set `CELERY
 
 ## Contributing
 
-If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/vintasoftware/django-react-boilerplate/issues).
+If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/vintasoftware/hearthstone-deck/issues).
 
-Check our [contributing guide](https://github.com/vintasoftware/django-react-boilerplate/blob/master/CONTRIBUTING.md) to learn more about our development process and how you can test your changes to the boilerplate.
+Check our [contributing guide](https://github.com/vintasoftware/hearthstone-deck/blob/master/CONTRIBUTING.md) to learn more about our development process and how you can test your changes to the boilerplate.
 
 ## Commercial Support
 [![alt text](https://avatars2.githubusercontent.com/u/5529080?s=80&v=4 "Vinta Logo")](https://www.vinta.com.br/)

@@ -10,12 +10,12 @@ Read [this checklist](http://pullrequests.devchecklists.com) for a more detailed
 
 If you made changes to this boilerplate and want to test them, do as follows:
 
-- [Make sure you have pre-commit installed](https://github.com/vintasoftware/django-react-boilerplate#pre-commit-hooks)
+- [Make sure you have pre-commit installed](https://github.com/vintasoftware/hearthstone-deck#pre-commit-hooks)
 - Commit your changes
 - Run `git archive -o boilerplate.zip HEAD` to create the template zip file
 - Run the following:
   ```bash
-  cd .. && django-admin startproject theprojectname --extension py,yml,json --name Procfile,README.md,.env.example,Dockerfile,docker-compose.yml,Makefile,pyproject.toml,render.yaml --template=django-react-boilerplate/boilerplate.zip
+  cd .. && django-admin startproject theprojectname --extension py,yml,json --name Procfile,README.md,.env.example,Dockerfile,docker-compose.yml,Makefile,pyproject.toml,render.yaml --template=hearthstone-deck/boilerplate.zip
   ```
 - A new folder called `theprojectname` will be created and now you can test your changes
 - Make sure that the project is still running fine with and without docker

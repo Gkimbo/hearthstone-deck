@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace heartstone-deck-client build",
+    "dev": "yarn workspace heartstone-deck-server dev",
+    "heroku-postbuild": "yarn workspace heartstone-deck-client build",
+    "start": "yarn workspace heartstone-deck-server start"
+  },
+  "engines": {
+    "node": "^16.18",
+    "yarn": "1.22.19"
+  }
+}

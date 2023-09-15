@@ -2,8 +2,7 @@ youll have to navigate to the client folder and run
 
 ```bash
 npm install
-npm run build
-npm run dev
+npm start
 ```
 
 in the server file run

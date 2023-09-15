@@ -42,3 +42,8 @@ async def root():
 @app.get("/api/v1/users")
 async def get_users():
     return db
+
+@app.post("/api/v1/users")
+async def create_user(user: User):
+    db.append(user)
+    return {"id": user.id}

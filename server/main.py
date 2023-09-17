@@ -1,8 +1,6 @@
 # main.py
-from typing import List
-from uuid import uuid4
 from fastapi import FastAPI
-from models import Gender, Role, User
+from models import User
 from userMigration import db
 
 app = FastAPI()

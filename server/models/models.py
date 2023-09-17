@@ -9,6 +9,7 @@ from pydantic import BaseModel
 class Gender(str, Enum):
     male = "male"
     female = "female"
+    other = "other"
 
 
 class Role(str, Enum):

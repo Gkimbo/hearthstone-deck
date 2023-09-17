@@ -6,10 +6,10 @@ from models.models import Gender, Role, User
 db: List[User] = [
     User(
         id=uuid4(),
-        first_name="John",
-        last_name="Doe",
-        gender=Gender.male,
-        roles=[Role.user],
+        first_name="Admin",
+        last_name="1",
+        gender=Gender.other,
+        roles=[Role.admin],
     ),
     User(
         id=uuid4(),

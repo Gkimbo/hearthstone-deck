@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI
-from models import User
-from userMigration import db
+from models.models import User
+from migrations.userMigration import db
 
 app = FastAPI()
 

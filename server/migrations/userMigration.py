@@ -1,6 +1,6 @@
 from typing import List
 from uuid import uuid4
-from models import Gender, Role, User
+from models.models import Gender, Role, User
 
 
 db: List[User] = [

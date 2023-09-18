@@ -7,7 +7,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Heartstone Deck build</h1>
+                <h1>Hearthstone Deck build</h1>
                 <img src={logo} className="App-logo" alt="logo" />
             </header>
         </div>

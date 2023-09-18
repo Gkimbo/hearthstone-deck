@@ -1,6 +1,11 @@
 You'll have to navigate to the client folder and run
 
 ```bash
+pip3 install "uvicorn[standard]"
+pip3 install fastapi
+```
+
+```bash
 npm install
 npm start
 ```

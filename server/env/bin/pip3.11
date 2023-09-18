@@ -1,4 +1,4 @@
-#!/Users/gavinkimball/python/heartstone-deck/env/bin/python3.11
+#!/Users/gavinkimball/python/hearthstone-deck/env/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

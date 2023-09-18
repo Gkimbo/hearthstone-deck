@@ -1,0 +1,10 @@
+{
+    "type": "module",
+    "private": true,
+    "workspaces": [
+        "client"
+    ],
+    "scripts": {
+        "start": "client start"
+    }
+}

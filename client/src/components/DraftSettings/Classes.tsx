@@ -11,7 +11,7 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
 
     const classElements = gameClasses.map((gameClass) => {
         return (
-            <label htmlFor={gameClass}>
+            <label htmlFor={gameClass} key={gameClass}>
                 <h3>
                     {gameClass}
                     <input

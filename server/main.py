@@ -2,7 +2,6 @@
 from fastapi import FastAPI
 from models.models import User
 from migrations.userMigration import db
-import requests
 from services.ApiRequests import get_cards
 
 app = FastAPI()

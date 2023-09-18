@@ -7,11 +7,11 @@ load_dotenv()
 hearthStoneApiKey = os.getenv('HEARTHSTONE_API_KEY')
 
 
-async def get_cards():
+def get_cards():
     url = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards"
 
     headers = {
-        "X-RapidAPI-Key": {hearthStoneApiKey},
+        "X-RapidAPI-Key": hearthStoneApiKey,
         "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com"
     }
 

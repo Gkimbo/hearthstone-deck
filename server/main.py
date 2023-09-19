@@ -2,6 +2,7 @@
 import json
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from services.searchWords import search_object
 
 app = FastAPI()
 
@@ -25,9 +26,13 @@ async def root():
 
 @app.post("/api/v1/userInput")
 async def find_cards(request: Request):
-    data = await request.json()
-    print(data)
-    return {"message": data}
+    user_input = await request.json()
+    print(user_input)
+    with open("cards.json", "r") as file:
+        data = json.load(file)
+    cards = search_object(data, user_input)
+    print(cards)
+    return {"message": cards}
 
 
 @app.get("/api/v1/all")

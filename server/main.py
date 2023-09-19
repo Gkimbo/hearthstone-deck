@@ -1,9 +1,6 @@
 # main.py
 import json
 from fastapi import FastAPI
-from models.models import User
-from migrations.userMigration import db
-from services.ApiRequests import get_cards
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -23,7 +20,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"Hello": "World", }
+    return {"Welcome to the Python Backend"}
 
 
 @app.get("/api/v1/all")

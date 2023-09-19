@@ -1,10 +1,24 @@
 # main.py
+import json
 from fastapi import FastAPI
 from models.models import User
 from migrations.userMigration import db
 from services.ApiRequests import get_cards
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",  # Replace with your frontend domain
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -27,3 +41,10 @@ async def create_user(user: User):
 async def fetch_cards():
     all_cards = get_cards()
     return all_cards
+
+
+@app.get("/api/v1/all")
+def get_data():
+    with open("cards.json", "r") as file:
+        data = json.load(file)
+    return data

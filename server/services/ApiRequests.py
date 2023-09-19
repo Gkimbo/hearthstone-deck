@@ -18,6 +18,8 @@ def get_cards():
 
     response = requests.get(url, headers=headers)
     responseData = response.json()
+    with open("cards.json", "w") as file:
+        json.dump(responseData, file)
     return responseData
 
 
@@ -31,4 +33,6 @@ def get_card_info():
 
     response = requests.get(url, headers=headers)
     responseData = response.json()
+    with open("info.json", "w") as file:
+        json.dump(responseData, file)
     return responseData

@@ -1,4 +1,4 @@
-You'll have to navigate to the client folder and run
+From the root folder run
 
 ```bash
 pip3 install "uvicorn[standard]"
@@ -10,16 +10,6 @@ npm install
 npm start
 ```
 
-in the server file run
+You can then navigate to http://localhost:3000/ and see the site.
 
-```bash
-uvicorn main:app --reload
-```
-
-to see the python backend
-
-change
-
-```bash
-client/src/App.tsx
-```
+Change `Home.tsx` in the `client` folder to change the site.

@@ -7,6 +7,7 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
     const[allCards, setAllCards] = useState<object>({})
 
     const gameClasses = Object.keys(allCards);
+    console.log(allCards)
 
     const getGameInfo = async () => {
         try {

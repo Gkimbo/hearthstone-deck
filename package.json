@@ -5,6 +5,9 @@
         "client"
     ],
     "scripts": {
-        "start": "client start"
+        "start": "concurrently \"cd server && uvicorn main:app --reload\" \"cd client && npm start\""
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.1"
     }
 }

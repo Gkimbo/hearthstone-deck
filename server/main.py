@@ -20,7 +20,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"Welcome to the Python Backend"}
+    return "Welcome to the Python Backend"
 
 
 @app.get("/api/v1/all")

@@ -3,7 +3,7 @@ import json
 from fastapi import FastAPI
 from models.models import User
 from migrations.userMigration import db
-from services.ApiRequests import get_cards
+from services.ApiRequests import get_cards, get_card_info
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -48,3 +48,9 @@ def get_data():
     with open("cards.json", "r") as file:
         data = json.load(file)
     return data
+
+
+@app.get("/api/v1/info")
+def fetch_card_info():
+    all_card_info = get_card_info()
+    return all_card_info

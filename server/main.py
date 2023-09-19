@@ -23,7 +23,7 @@ async def root():
     return "Welcome to the Python Backend"
 
 
-@app.post("/")
+@app.post("/api/v1/userInput")
 async def find_cards(request: Request):
     data = await request.json()
     print(data)

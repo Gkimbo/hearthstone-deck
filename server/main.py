@@ -1,6 +1,6 @@
 # main.py
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -21,6 +21,13 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return "Welcome to the Python Backend"
+
+
+@app.post("/")
+async def find_cards(request: Request):
+    data = await request.json()
+    print(data)
+    return {"message": data}
 
 
 @app.get("/api/v1/all")

@@ -14,7 +14,17 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         gameSets: [],
         numPacks: 0,
     });
-    // console.log(draftSettings);
+    const [cardInfo, setCardInfo] = useState<{ classes: string[]; sets: string[] }>({
+        classes: [],
+        sets: [],
+    });
+
+    const gameClasses = cardInfo.classes.map((eachClass: string) => {
+        return eachClass;
+    });
+    const gameSets = cardInfo.sets.map((eachSet: string) => {
+        return eachSet;
+    });
 
     const getGameInfo = async () => {
         try {
@@ -25,7 +35,6 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
                 throw error;
             }
             const responseBody = await response.json();
-            // console.log(responseBody);
             interface GameData {
                 name: string;
             }

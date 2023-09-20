@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 export interface IClassesProps {
     draftSettings: {
@@ -17,19 +17,30 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
     const { draftSettings, setDraftSettings } = props;
     console.log(props);
 
-    const classElements = draftSettings.gameClasses.map((gameClass: any) => {
-        const handleCheckbox = () => {
+    const classElements = draftSettings.gameClasses.map((gameClass: any, index: number) => {
+        const handleCheckbox = (): void => {
             type Setting = {
-                classBool: boolean
-                className: string
-            }
-            // const singleSetting = draftSettings.gameClasses.filter((singleGameClass: any) => {
+                className?: string;
+                classBool?: boolean;
+            };
+
             const singleSettingArray = draftSettings.gameClasses.filter((singleGameClass: any) => {
                 return singleGameClass.className === gameClass.className;
             });
-            const singleSetting = singleSettingArray[0];
+            console.log(singleSettingArray);
+            const singleSetting: Setting = singleSettingArray[0];
 
-            if (singleSetting.classBool)
+            if (singleSetting.classBool) {
+                singleSetting.classBool = false;
+            } else {
+                singleSetting.classBool = true;
+            }
+            const newArray = draftSettings.gameClasses;
+            newArray.splice(index, 1, singleSetting);
+            setDraftSettings({
+                ...draftSettings,
+                gameClasses: newArray,
+            });
         };
 
         return (
@@ -47,7 +58,8 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
             </label>
         );
     });
-    return <div className="">{classElements}</div>;
+
+    return <>{classElements}</>;
 };
 
 export default Classes;

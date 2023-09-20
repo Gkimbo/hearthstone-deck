@@ -4,21 +4,25 @@ import Classes from "./DraftSettings/Classes";
 export interface IDraftProps {}
 
 const Draft: React.FunctionComponent<IDraftProps> = (props) => {
-    const[allCards, setAllCards] = useState<object>({})
+    const[cardInfo, setCardInfo] = useState<{classes: string[], sets: string[]}>({classes:[], sets:[]})
 
-    const gameClasses = Object.keys(allCards);
-    console.log(allCards)
+    const gameClasses = cardInfo.classes.map((eachClass: string) => {
+        return eachClass
+    })
+    const gameSets = cardInfo.sets.map((eachSet:string) => {
+        return eachSet
+    })
 
     const getGameInfo = async () => {
         try {
-            const response = await fetch("http://localhost:8000/api/v1/all");
+            const response = await fetch("http://localhost:8000/api/v1/info");
             if (!response.ok) {
                 const errorMessage = `${response.status} (${response.statusText})`;
                 const error = new Error(errorMessage);
                 throw error;
             }
             const responseBody = await response.json();
-            setAllCards(responseBody)
+            setCardInfo(responseBody)
         } catch (error: any) {
             console.error(`getProjects error in Fetch: ${error.message}`);
         }
@@ -30,9 +34,7 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
 
     return (
         <div className="callout">
-            <form>
-                <Classes gameClasses={gameClasses} />
-            </form>
+                <Classes gameClasses={gameClasses} gameSets={gameSets}/>
         </div>
     );
 };

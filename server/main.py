@@ -1,10 +1,8 @@
 # main.py
 import json
-from fastapi import FastAPI
-from models.models import User
-from migrations.userMigration import db
-from services.ApiRequests import get_cards
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from services.searchWords import search_object
 
 app = FastAPI()
 
@@ -23,28 +21,29 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"Hello": "World", }
+    return "Welcome to the Python Backend"
 
 
-@app.get("/api/v1/users")
-async def get_users():
-    return db
-
-
-@app.post("/api/v1/users")
-async def create_user(user: User):
-    db.append(user)
-    return {"id": user.id}
-
-
-@app.get("/api/v1/cards")
-async def fetch_cards():
-    all_cards = get_cards()
-    return all_cards
+@app.post("/api/v1/userInput")
+async def find_cards(request: Request):
+    user_input = await request.json()
+    print(user_input)
+    with open("cards.json", "r") as file:
+        data = json.load(file)
+    cards = search_object(data, user_input)
+    print(cards)
+    return {"message": cards}
 
 
 @app.get("/api/v1/all")
 def get_data():
     with open("cards.json", "r") as file:
+        data = json.load(file)
+    return data
+
+
+@app.get("/api/v1/info")
+def get_data():
+    with open("info.json", "r") as file:
         data = json.load(file)
     return data

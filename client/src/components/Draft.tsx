@@ -14,17 +14,18 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         gameSets: [],
         numPacks: 0,
     });
-    const [cardInfo, setCardInfo] = useState<{ classes: string[]; sets: string[] }>({
-        classes: [],
-        sets: [],
-    });
+    console.log(draftSettings);
+    // const [cardInfo, setCardInfo] = useState<{ classes: string[]; sets: string[] }>({
+    //     classes: [],
+    //     sets: [],
+    // });
 
-    const gameClasses = cardInfo.classes.map((eachClass: string) => {
-        return eachClass;
-    });
-    const gameSets = cardInfo.sets.map((eachSet: string) => {
-        return eachSet;
-    });
+    // const gameClasses = cardInfo.classes.map((eachClass: string) => {
+    //     return eachClass;
+    // });
+    // const gameSets = cardInfo.sets.map((eachSet: string) => {
+    //     return eachSet;
+    // });
 
     const getGameInfo = async () => {
         try {
@@ -66,12 +67,14 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         getGameInfo();
     }, []);
 
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+    };
+
     return (
-        <div className="callout">
-            <form>
-                <Classes draftSettings={draftSettings} setDraftSettings={setDraftSettings} />
-            </form>
-        </div>
+        <form className="callout" onSubmit={handleSubmit}>
+            <Classes draftSettings={draftSettings} setDraftSettings={setDraftSettings} />
+        </form>
     );
 };
 

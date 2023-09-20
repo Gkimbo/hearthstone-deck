@@ -32,10 +32,15 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         getGameInfo()
     }, []);
 
+    const handleSubmit = (event: any) => {
+        event.preventDefault()
+        
+    }
+
     return (
-        <div className="callout">
+        <form className="callout" onSubmit={handleSubmit}>
                 <Classes gameClasses={gameClasses} gameSets={gameSets}/>
-        </div>
+        </form>
     );
 };
 

@@ -26,7 +26,7 @@ function calculateValue(value: number) {
 }
 
 const NonLinearSlider: React.FC<NonLinearSliderProps> = ({ dispatch }) => {
-    const [value, setValue] = React.useState<number>(10);
+    const [value, setValue] = React.useState<number>(3);
     const handleSlider = (event: any, newValue: number | number[]) => {
         if (typeof newValue === 'number') {
             setValue(newValue);

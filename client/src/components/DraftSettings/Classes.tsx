@@ -17,7 +17,7 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
     const [state, dispatch] = useReducer(reducer, {
         classes: [],
         sets: [],
-        decks: 1
+        decks: 3
     });
 
     console.log(state)

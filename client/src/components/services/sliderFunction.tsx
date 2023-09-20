@@ -37,7 +37,7 @@ const NonLinearSlider: React.FC<NonLinearSliderProps> = ({ dispatch }) => {
   return (
         <Box sx={{ width: "100%" }} alignItems="center">
         <Typography variant="h2" component="h3" id="non-linear-slider" gutterBottom className="list-title">
-            Decks of cards: {valueLabelFormat(calculateValue(value))}
+            Number of Decks: {valueLabelFormat(calculateValue(value))}
         </Typography>
         <Slider
             value={value}

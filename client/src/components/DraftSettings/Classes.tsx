@@ -20,6 +20,7 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
         decks: 1
     });
 
+    console.log(state)
     const classElements = gameClasses.map((gameClass) => {
         return (
             <label htmlFor={gameClass} key={gameClass}>
@@ -29,7 +30,7 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
                         id={gameClass}
                         name="class"
                         value={gameClass}
-                        onChange={handleChange}
+                        onChange={(event: any) => handleChange(event, dispatch)}
                     />
                     
                 </h3>
@@ -46,7 +47,7 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
                         id={set}
                         name="set"
                         value={set}
-                        onChange={handleChange}
+                        onChange={(event: any) => handleChange(event, dispatch)}
                     />
                 </h3>
             </label>
@@ -56,7 +57,7 @@ const Classes: React.FunctionComponent<IClassesProps> = (props) => {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} justifyContent="center">
                 <Grid item xs={8}>
-                    <Item><NonLinearSlider /></Item> 
+                    <Item><NonLinearSlider dispatch={dispatch}/></Item> 
                 </Grid>
                 <Grid item xs={6}>
                     <Item><h1 className="list-title">Classes: </h1>{classElements}</Item>         

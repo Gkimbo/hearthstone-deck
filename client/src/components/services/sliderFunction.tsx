@@ -4,6 +4,10 @@ import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import handleChange from './handleChange';
 
+type NonLinearSliderProps = {
+    dispatch: React.Dispatch<any>;
+};
+
 function valueLabelFormat(value: number) {
     const units = ["Deck","Decks"];
     let unitIndex = 0;
@@ -21,18 +25,17 @@ function calculateValue(value: number) {
     return value;
 }
 
-const NonLinearSlider = () => {
+const NonLinearSlider: React.FC<NonLinearSliderProps> = ({ dispatch }) => {
     const [value, setValue] = React.useState<number>(10);
-
     const handleSlider = (event: any, newValue: number | number[]) => {
         if (typeof newValue === 'number') {
             setValue(newValue);
+            handleChange(event, dispatch);
         }
-        handleChange(event)
-    };
+  };
 
-    return (
-    <Box sx={{ width: "100%" }} alignItems="center">
+  return (
+        <Box sx={{ width: "100%" }} alignItems="center">
         <Typography variant="h2" component="h3" id="non-linear-slider" gutterBottom className="list-title">
             Decks of cards: {valueLabelFormat(calculateValue(value))}
         </Typography>
@@ -49,8 +52,8 @@ const NonLinearSlider = () => {
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
         />
-    </Box>
-    );
-}
+        </Box>
+  );
+};
 
-export default NonLinearSlider
+export default NonLinearSlider;

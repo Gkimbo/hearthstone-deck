@@ -1,12 +1,25 @@
+const handleChange = (event: any, dispatch: any) => {
+    const { name, value, checked } = event.target;
 
-
-const handleChange = (event: any) => { 
-    const input = {
-            name: event.target.name,
-            value: event.target.value
+    if (name === "class") {
+        if (checked) {
+            dispatch({ type: "ADD_CLASS", payload: value });
+        } else {
+            dispatch({ type: "REMOVE_CLASS", payload: value });
         }
+    }
 
-        console.log(input)
-}
+    if (name === "set") {
+        if (checked) {
+            dispatch({ type: "ADD_SET", payload: value });
+        } else {
+            dispatch({ type: "REMOVE_SET", payload: value });
+        }
+    }
 
-export default handleChange
+    if(name === "decks") {
+        dispatch({type: "UPDATE_DECKS", payload: value})
+    }
+};
+
+export default handleChange;

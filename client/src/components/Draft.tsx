@@ -3,7 +3,6 @@ import NonLinearSlider from "./services/sliderFunction";
 import Item from "./services/containerStyles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { height } from "@mui/system";
 import reducer from "./services/useReducerFunction";
 
 import Classes from "./DraftSettings/Classes";

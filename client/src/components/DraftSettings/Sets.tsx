@@ -4,21 +4,21 @@ import Item from "../services/containerStyles";
 import handleChange from "../services/handleChange";
 
 export interface IClassesProps {
-    allClasses: { classes: any[]; sets: any[]; numPacks: number };
+    allSets: { classes: any[]; sets: any[]; numPacks: number };
     dispatch: React.Dispatch<any>;
 }
 
-const Classes: React.FunctionComponent<IClassesProps> = ({ dispatch, allClasses }) => {
-    const classElements = allClasses.classes.map(
-        (gameClass: { className: string; classBool: boolean }, index: number) => {
+const Sets: React.FunctionComponent<IClassesProps> = ({ dispatch, allSets }) => {
+    const setElements = allSets.sets.map(
+        (gameSet: { setName: string; setBool: boolean }, index: number) => {
             return (
-                <label htmlFor={gameClass.className} key={index}>
+                <label htmlFor={gameSet.setName} key={index}>
                     <h3 className="list-items">
-                        {gameClass.className}
+                        {gameSet.setName}
                         <BpCheckbox
-                            id={gameClass.className}
-                            name="class"
-                            value={gameClass.className}
+                            id={gameSet.setName}
+                            name="set"
+                            value={gameSet.setName}
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                                 handleChange(event, dispatch)
                             }
@@ -28,13 +28,12 @@ const Classes: React.FunctionComponent<IClassesProps> = ({ dispatch, allClasses 
             );
         }
     );
-
     return (
         <Item>
-            <h1 className="list-title">Classes: </h1>
-            {classElements}
+            <h1 className="list-title">Sets: </h1>
+            {setElements}
         </Item>
     );
 };
 
-export default Classes;
+export default Sets;

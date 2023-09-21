@@ -17,8 +17,8 @@ const handleChange = (event: any, dispatch: any) => {
         }
     }
 
-    if(name === "decks") {
-        dispatch({type: "UPDATE_DECKS", payload: value})
+    if (name === "numPacks") {
+        dispatch({ type: "UPDATE_PACKS", payload: value });
     }
 };
 

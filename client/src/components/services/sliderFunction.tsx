@@ -9,7 +9,7 @@ type NonLinearSliderProps = {
 };
 
 function valueLabelFormat(value: number) {
-    const units = ["Deck", "Decks"];
+    const units = ["Pack", "Packs"];
     let unitIndex = 0;
     let scaledValue = value;
     if (scaledValue > 1) {
@@ -25,7 +25,7 @@ function calculateValue(value: number) {
 }
 
 const NonLinearSlider: React.FC<NonLinearSliderProps> = ({ dispatch }) => {
-    const [value, setValue] = React.useState<number>(3);
+    const [value, setValue] = React.useState<number>(1);
     const handleSlider = (event: any, newValue: number | number[]) => {
         if (typeof newValue === "number") {
             setValue(newValue);
@@ -34,7 +34,7 @@ const NonLinearSlider: React.FC<NonLinearSliderProps> = ({ dispatch }) => {
     };
 
     return (
-        <Box sx={{ width: "100%" }} alignItems="center">
+        <Box sx={{ width: "40%" }} m="0 auto" p="5px">
             <Typography
                 variant="h2"
                 component="h3"
@@ -49,7 +49,7 @@ const NonLinearSlider: React.FC<NonLinearSliderProps> = ({ dispatch }) => {
                 min={1}
                 step={1}
                 max={30}
-                name="decks"
+                name="numPacks"
                 scale={calculateValue}
                 getAriaValueText={valueLabelFormat}
                 valueLabelFormat={valueLabelFormat}

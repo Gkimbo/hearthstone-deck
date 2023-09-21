@@ -2,32 +2,37 @@ const reducer = (state: any, action: any) => {
     switch (action.type) {
         case "ADD_CLASS":
             return {
-            ...state,
-            classes: [...state.classes, action.payload],
+                ...state,
+                classes: [...state.classes, action.payload],
             };
         case "REMOVE_CLASS":
             return {
-            ...state,
-            classes: state.classes.filter((c: string) => c !== action.payload),
+                ...state,
+                classes: state.classes.filter((c: string) => c !== action.payload),
             };
         case "ADD_SET":
             return {
-            ...state,
-            sets: [...state.sets, action.payload],
+                ...state,
+                sets: [...state.sets, action.payload],
             };
         case "REMOVE_SET":
             return {
-            ...state,
-            sets: state.sets.filter((s: string) => s !== action.payload),
+                ...state,
+                sets: state.sets.filter((s: string) => s !== action.payload),
             };
-        case "UPDATE_DECKS":
+        case "UPDATE_PACKS":
             return {
                 ...state,
-                decks: action.payload
-            }
+                numPacks: action.payload,
+            };
+        case "ADD_SETTINGS":
+            return {
+                ...state,
+                ...action.payload,
+            };
         default:
             throw new Error();
-        }
+    }
 };
-  
+
 export default reducer;

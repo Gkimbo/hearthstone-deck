@@ -1,32 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
+import NonLinearSlider from "./services/sliderFunction";
+import Item from "./services/containerStyles";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { height } from "@mui/system";
+import reducer from "./services/useReducerFunction";
+
 import Classes from "./DraftSettings/Classes";
+import Sets from "./DraftSettings/Sets";
 
 export interface IDraftProps {}
 
 const Draft: React.FunctionComponent<IDraftProps> = (props) => {
-    interface IDraftSettings {
-        gameClasses: Array<object>;
-        gameSets: Array<object>;
-        numPacks: number;
-    }
-    const [draftSettings, setDraftSettings] = useState<IDraftSettings>({
-        gameClasses: [],
-        gameSets: [],
+    const [initialState, setInitialState] = useState({
+        classes: [],
+        sets: [],
         numPacks: 0,
     });
-    console.log(draftSettings);
-    // const [cardInfo, setCardInfo] = useState<{ classes: string[]; sets: string[] }>({
-    //     classes: [],
-    //     sets: [],
-    // });
+    const [state, dispatch] = useReducer(reducer, {
+        classes: [],
+        sets: [],
+        numPacks: null,
+    });
 
-    // const gameClasses = cardInfo.classes.map((eachClass: string) => {
-    //     return eachClass;
-    // });
-    // const gameSets = cardInfo.sets.map((eachSet: string) => {
-    //     return eachSet;
-    // });
-
+    console.log("Chosen state: ", state);
+    console.log("Initial state: ", initialState);
     const getGameInfo = async () => {
         try {
             const response = await fetch("http://localhost:8000/api/v1/info");
@@ -53,11 +51,11 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
                 };
             });
             const newSettings = {
-                gameClasses,
-                gameSets,
-                numPacks: 0,
+                classes: gameClasses,
+                sets: gameSets,
+                numPacks: 1,
             };
-            setDraftSettings(newSettings);
+            setInitialState(newSettings);
         } catch (error: any) {
             console.error(`getProjects error in Fetch: ${error.message}`);
         }
@@ -73,7 +71,25 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
 
     return (
         <form className="callout" onSubmit={handleSubmit}>
-            <Classes draftSettings={draftSettings} setDraftSettings={setDraftSettings} />
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={5} justifyContent="center">
+                    <Grid item xs={10}>
+                        <Item>
+                            <NonLinearSlider dispatch={dispatch} />
+                        </Item>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div className="container-1">
+                            <Classes dispatch={dispatch} allClasses={initialState} />
+                        </div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div className="container-1">
+                            <Sets dispatch={dispatch} allSets={initialState} />
+                        </div>
+                    </Grid>
+                </Grid>
+            </Box>
         </form>
     );
 };

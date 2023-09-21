@@ -23,8 +23,6 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         numPacks: null,
     });
 
-    console.log("Chosen state: ", state);
-    console.log("Initial state: ", initialState);
     const getGameInfo = async () => {
         try {
             const response = await fetch("http://localhost:8000/api/v1/info");

@@ -1,46 +1,40 @@
 import React from "react";
+import BpCheckbox from "../services/checkboxFunction";
+import Item from "../services/containerStyles";
+import handleChange from "../services/handleChange";
 
 export interface IClassesProps {
-    gameClasses: Array<string>
-    gameSets: Array<string>
+    allClasses: { classes: any[]; sets: any[]; numPacks: number };
+    dispatch: React.Dispatch<any>;
 }
 
-const Classes: React.FunctionComponent<IClassesProps> = (props) => {
-    const { gameClasses, gameSets } = props;
+const Classes: React.FunctionComponent<IClassesProps> = ({ dispatch, allClasses }) => {
+    const classElements = allClasses.classes.map(
+        (gameClass: { className: string; classBool: boolean }, index: number) => {
+            return (
+                <label htmlFor={gameClass.className} key={index}>
+                    <h3 className="list-items">
+                        {gameClass.className}
+                        <BpCheckbox
+                            id={gameClass.className}
+                            name="class"
+                            value={gameClass.className}
+                            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                                handleChange(event, dispatch)
+                            }
+                        />
+                    </h3>
+                </label>
+            );
+        }
+    );
 
-    const classElements = gameClasses.map((gameClass) => {
-        return (
-            <label htmlFor={gameClass} key={gameClass} className="cell small-6">
-                <h3>
-                    {gameClass}
-                    <input
-                        id={gameClass}
-                        type="checkbox"
-                        name={gameClass}
-                    />
-                </h3>
-            </label>
-        );
-    });
-
-    const setElements = gameSets.map((set, index) => {
-        return (
-            <label htmlFor={set} key={index} className="cell small-6">
-                <h3>
-                    {set}
-                    <input
-                        id={set}
-                        type="checkbox"
-                        name={set}
-                    />
-                </h3>
-            </label>
-        )
-    })
-    return (<form className="grid-x">
-        {classElements}
-        {setElements}
-        </form>)
+    return (
+        <Item>
+            <h1 className="list-title">Classes: </h1>
+            {classElements}
+        </Item>
+    );
 };
 
 export default Classes;

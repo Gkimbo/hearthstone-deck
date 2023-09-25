@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useReducer } from "react";
 import NonLinearSlider from "./services/sliderFunction";
 import Item from "./services/containerStyles";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import { Box, Grid, Button } from "@mui/material";
 import reducer from "./services/useReducerFunction";
+import getGameInfo from "./services/getGameInfo";
+import submitUserInput from "./services/submitUserInput";
 
 import Classes from "./DraftSettings/Classes";
 import Sets from "./DraftSettings/Sets";
@@ -22,48 +23,15 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         numPacks: null,
     });
 
-    const getGameInfo = async () => {
-        try {
-            const response = await fetch("http://localhost:8000/api/v1/info");
-            if (!response.ok) {
-                const errorMessage = `${response.status} (${response.statusText})`;
-                const error = new Error(errorMessage);
-                throw error;
-            }
-            const responseBody = await response.json();
-            interface GameData {
-                name: string;
-            }
-            const gameClasses = responseBody.classes.map((gameClass: GameData) => {
-                return {
-                    className: gameClass,
-                    classBool: false,
-                };
-            });
-
-            const gameSets = responseBody.sets.map((gameSet: GameData) => {
-                return {
-                    setName: gameSet,
-                    setBool: false,
-                };
-            });
-            const newSettings = {
-                classes: gameClasses,
-                sets: gameSets,
-                numPacks: 1,
-            };
-            setInitialState(newSettings);
-        } catch (error: any) {
-            console.error(`getProjects error in Fetch: ${error.message}`);
-        }
-    };
-
     useEffect(() => {
-        getGameInfo();
+        getGameInfo().then((info: any) => {
+            setInitialState(info);
+        });
     }, []);
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
+        const response = await submitUserInput(state);
     };
 
     return (
@@ -87,6 +55,9 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
                     </Grid>
                 </Grid>
             </Box>
+            <Button color="primary" type="submit">
+                Submit
+            </Button>
         </form>
     );
 };

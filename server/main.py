@@ -31,7 +31,7 @@ async def find_cards(request: Request):
     with open("cards.json", "r") as file:
         data = json.load(file)
     cards = search_object(data, user_input)
-    print(cards)
+
     return {"message": cards}
 
 

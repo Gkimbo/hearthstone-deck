@@ -27,7 +27,9 @@ async def root():
 @app.post("/api/v1/userInput")
 async def find_cards(request: Request):
     user_input = await request.json()
-    print(user_input)
+    classes = user_input["classes"]
+    sets = user_input["sets"]
+    numPacks = user_input["numPacks"]
     with open("cards.json", "r") as file:
         data = json.load(file)
     cards = search_object(data, user_input)

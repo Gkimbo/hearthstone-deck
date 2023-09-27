@@ -2,9 +2,10 @@ import React from "react";
 import BpCheckbox from "../services/checkboxFunction";
 import Item from "../services/containerStyles";
 import handleChange from "../services/handleChange";
+import { State } from "../types/Draft";
 
 export interface IClassesProps {
-    allClasses: { classes: any[]; sets: any[]; numPacks: number };
+    allClasses: State;
     dispatch: React.Dispatch<any>;
 }
 

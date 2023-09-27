@@ -1,3 +1,5 @@
+import { State } from "../types/Draft";
+
 const getGameInfo = async () => {
     try {
         const response = await fetch("http://localhost:8000/api/v1/info");
@@ -23,11 +25,13 @@ const getGameInfo = async () => {
                 setBool: false,
             };
         });
-        const newSettings = {
+
+        const newSettings: State = {
             classes: gameClasses,
             sets: gameSets,
             numPacks: 1,
         };
+
         return newSettings;
     } catch (error: any) {
         console.error(`getProjects error in Fetch: ${error.message}`);

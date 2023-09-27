@@ -5,6 +5,7 @@ import { Box, Grid, Button } from "@mui/material";
 import reducer from "./services/useReducerFunction";
 import getGameInfo from "./services/getGameInfo";
 import submitUserInput from "./services/submitUserInput";
+import type { State } from "./types/Draft";
 
 import Classes from "./DraftSettings/Classes";
 import Sets from "./DraftSettings/Sets";
@@ -12,9 +13,9 @@ import Sets from "./DraftSettings/Sets";
 export interface IDraftProps {}
 
 const Draft: React.FunctionComponent<IDraftProps> = (props) => {
-    const [initialState, setInitialState] = useState({
-        classes: [],
-        sets: [],
+    const [initialState, setInitialState] = useState<State>({
+        classes: [{ className: "", classBool: false }],
+        sets: [{ setName: "", setBool: false }],
         numPacks: 0,
     });
     const [state, dispatch] = useReducer(reducer, {
@@ -24,14 +25,18 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
     });
 
     useEffect(() => {
-        getGameInfo().then((info: any) => {
-            setInitialState(info);
+        getGameInfo().then((info: State | undefined) => {
+            if (!info) {
+            } else {
+                setInitialState(info);
+            }
         });
     }, []);
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
         const response = await submitUserInput(state);
+        console.log(response);
     };
 
     return (

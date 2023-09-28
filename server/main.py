@@ -32,9 +32,13 @@ async def find_cards(request: Request):
     numPacks = user_input["numPacks"]
     with open("cards.json", "r") as file:
         data = json.load(file)
-    cards = search_object(data, user_input)
+    fullData = []
+    for set in sets:
+        cardData = [card for card in data[set] if card["playerClass"] in classes]
+        fullData = fullData + cardData
+    # print(fullData)
 
-    return {"message": cards}
+    return {"message": fullData}
 
 
 @app.get("/api/v1/all")

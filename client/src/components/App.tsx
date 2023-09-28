@@ -9,13 +9,15 @@ export interface IAppProps {}
 
 const App: React.FunctionComponent<IAppProps> = (props) => {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/draft" element={<Draft />}></Route>
-            </Routes>
-        </Router>
+        <div>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route path="/about" element={<About />}></Route>
+                    <Route path="/draft" element={<Draft />}></Route>
+                </Routes>
+            </Router>
+        </div>
     );
 };
 

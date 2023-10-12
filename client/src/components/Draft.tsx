@@ -13,6 +13,7 @@ import Sets from "./DraftSettings/Sets";
 export interface IDraftProps {}
 
 const Draft: React.FunctionComponent<IDraftProps> = (props) => {
+    const [shouldRedirect, setShouldRedirect] = useState(false);
     const [initialState, setInitialState] = useState<State>({
         classes: [{ className: "", classBool: false }],
         sets: [{ setName: "", setBool: false }],
@@ -23,6 +24,7 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         sets: [],
         numPacks: 1,
         error: null,
+        cardsFromBackend: null,
     });
 
     useEffect(() => {
@@ -39,7 +41,8 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
         if (state.classes.length !== 0 && state.sets.length !== 0) {
             const response = await submitUserInput(state);
             dispatch({ type: "ERROR", payload: null });
-            console.log(response);
+            dispatch({ type: "CARDS_FROM_BACKEND", payload: response });
+            setShouldRedirect(true);
         } else {
             dispatch({
                 type: "ERROR",
@@ -47,6 +50,11 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
             });
         }
     };
+
+    if (shouldRedirect) {
+        console.log("redirecting...");
+        window.location.href = "/opening";
+    }
 
     return (
         <form className="callout" onSubmit={handleSubmit}>

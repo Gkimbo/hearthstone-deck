@@ -41,7 +41,7 @@ async def find_cards(request: Request):
     if numPacks != 0:
         numCards = numPacks * 5
         packs = fullData[:numCards]
-    return {"message": packs}
+    return {"packs": packs}
 
 
 @app.get("/api/v1/all")

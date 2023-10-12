@@ -31,7 +31,7 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: blue;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -43,6 +43,38 @@
 
 .App-link {
     color: #61dafb;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+}
+
+.callout {
+    background-color: #5797a9;
+}
+
+.container-1 {
+    max-height: 86vh;
+    height: 86vh;
+    overflow: scroll;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+}
+
+.error-style {
+    max-width: fit-content;
+    padding: 0.5% 1.5% 0.5% 1.5%;
+    margin: 1% 0 0 0;
+    background-color: #ff0000;
+    border-radius: 5px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
 }
 
 @keyframes App-logo-spin {
@@ -65,9 +97,4 @@ input {
 .list-title {
     font-family: Arial, Helvetica, sans-serif;
     color: #282c34;
-}
-
-.container-1 {
-    height: 50rem;
-    overflow: scroll;
 }

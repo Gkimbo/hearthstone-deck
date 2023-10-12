@@ -30,6 +30,11 @@ const reducer = (state: any, action: any) => {
                 ...state,
                 ...action.payload,
             };
+        case "ERROR":
+            return {
+                ...state,
+                error: action.payload,
+            };
         default:
             throw new Error();
     }

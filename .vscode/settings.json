@@ -2,5 +2,14 @@
     "editor.formatOnSave": true,
     "python.analysis.extraPaths": [
         "./server/migrations"
-    ]
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#1C2C52",
+        "titleBar.activeBackground": "#283E73",
+        "titleBar.activeForeground": "#FBFBFE"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }

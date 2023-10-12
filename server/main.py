@@ -3,6 +3,7 @@ import json
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from services.searchWords import search_object
+import random
 
 app = FastAPI()
 
@@ -29,12 +30,18 @@ async def find_cards(request: Request):
     user_input = await request.json()
     classes = user_input["classes"]
     sets = user_input["sets"]
-    numPacks = user_input["numPacks"]
+    numPacks = user_input.get("numPacks", 0)
     with open("cards.json", "r") as file:
         data = json.load(file)
-    cards = search_object(data, user_input)
-
-    return {"message": cards}
+    fullData = []
+    for set in sets:
+        cardData = [card for card in data[set] if card["playerClass"] in classes]
+        fullData = fullData + cardData
+    random.shuffle(fullData)
+    if numPacks != 0:
+        numCards = numPacks * 5
+        packs = fullData[:numCards]
+    return {"message": packs}
 
 
 @app.get("/api/v1/all")

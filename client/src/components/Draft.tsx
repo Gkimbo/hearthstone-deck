@@ -16,12 +16,13 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
     const [initialState, setInitialState] = useState<State>({
         classes: [{ className: "", classBool: false }],
         sets: [{ setName: "", setBool: false }],
-        numPacks: 0,
+        numPacks: 1,
     });
     const [state, dispatch] = useReducer(reducer, {
         classes: [],
         sets: [],
-        numPacks: null,
+        numPacks: 1,
+        error: null,
     });
 
     useEffect(() => {
@@ -35,8 +36,16 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
-        const response = await submitUserInput(state);
-        console.log(response);
+        if (state.classes.length !== 0 && state.sets.length !== 0) {
+            const response = await submitUserInput(state);
+            dispatch({ type: "ERROR", payload: null });
+            console.log(response);
+        } else {
+            dispatch({
+                type: "ERROR",
+                payload: "Please select one or more Classes and one or more Sets",
+            });
+        }
     };
 
     return (
@@ -59,10 +68,24 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
                         </div>
                     </Grid>
                 </Grid>
+                {state.error ? (
+                    <div className="error-message">
+                        <div className="error-style">{state.error}</div>
+                    </div>
+                ) : null}
+                <div className="button-container">
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        sx={{
+                            width: 300,
+                            color: "primary",
+                        }}
+                    >
+                        Submit
+                    </Button>
+                </div>
             </Box>
-            <Button color="primary" type="submit">
-                Submit
-            </Button>
         </form>
     );
 };

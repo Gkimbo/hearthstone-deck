@@ -30,6 +30,8 @@ const getGameInfo = async () => {
             classes: gameClasses,
             sets: gameSets,
             numPacks: 1,
+            error: "",
+            cardsFromBackend: null,
         };
 
         return newSettings;

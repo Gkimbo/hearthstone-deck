@@ -1,6 +1,12 @@
-import React, { useReducer } from "react";
+import React from "react";
+import { State } from "./types/Draft";
 
-const Opening = () => {
+export interface IDraftProps {
+    state: State;
+    dispatch: React.Dispatch<any>;
+}
+
+const Opening: React.FunctionComponent<IDraftProps> = ({ state, dispatch }) => {
     return <div>Opening Page</div>;
 };
 

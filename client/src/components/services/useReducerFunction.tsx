@@ -30,6 +30,11 @@ const reducer = (state: any, action: any) => {
                 ...state,
                 ...action.payload,
             };
+        case "CARDS_FROM_BACKEND":
+            return {
+                ...state,
+                cardsFromBackend: action.payload,
+            };
         case "ERROR":
             return {
                 ...state,

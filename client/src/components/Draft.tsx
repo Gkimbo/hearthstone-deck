@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import NonLinearSlider from "./services/sliderFunction";
 import Item from "./services/containerStyles";
 import { Box, Grid, Button } from "@mui/material";
-import reducer from "./services/useReducerFunction";
 import getGameInfo from "./services/getGameInfo";
 import submitUserInput from "./services/submitUserInput";
 import type { State } from "./types/Draft";
@@ -10,20 +10,22 @@ import type { State } from "./types/Draft";
 import Classes from "./DraftSettings/Classes";
 import Sets from "./DraftSettings/Sets";
 
-export interface IDraftProps {}
+export interface IDraftProps {
+    state: State;
+    dispatch: React.Dispatch<any>;
+}
 
-const Draft: React.FunctionComponent<IDraftProps> = (props) => {
+const Draft: React.FunctionComponent<IDraftProps> = ({ state, dispatch }) => {
+    const [shouldRedirect, setShouldRedirect] = useState(false);
     const [initialState, setInitialState] = useState<State>({
         classes: [{ className: "", classBool: false }],
         sets: [{ setName: "", setBool: false }],
         numPacks: 1,
+        error: "",
+        cardsFromBackend: null,
     });
-    const [state, dispatch] = useReducer(reducer, {
-        classes: [],
-        sets: [],
-        numPacks: 1,
-        error: null,
-    });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getGameInfo().then((info: State | undefined) => {
@@ -36,10 +38,11 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
-        if (state.classes.length !== 0 && state.sets.length !== 0) {
+        if (state.classes.length > 0 && state.sets.length > 0) {
             const response = await submitUserInput(state);
             dispatch({ type: "ERROR", payload: null });
-            console.log(response);
+            dispatch({ type: "CARDS_FROM_BACKEND", payload: response });
+            setShouldRedirect(true);
         } else {
             dispatch({
                 type: "ERROR",
@@ -47,6 +50,11 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
             });
         }
     };
+
+    if (shouldRedirect) {
+        console.log("redirecting...");
+        navigate("/opening");
+    }
 
     return (
         <form className="callout" onSubmit={handleSubmit}>
@@ -68,7 +76,7 @@ const Draft: React.FunctionComponent<IDraftProps> = (props) => {
                         </div>
                     </Grid>
                 </Grid>
-                {state.error ? (
+                {state.error !== "" ? (
                     <div className="error-message">
                         <div className="error-style">{state.error}</div>
                     </div>

@@ -14,4 +14,6 @@ export type State = {
     classes: [ClassState],
     sets: [SetState],
     numPacks: number,
+    error:string,
+    cardsFromBackend: any,
 }
